@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "telegraf": "^4.15.3"
+  },
+  "name": "firsttolearn",
+  "version": "1.0.0",
+  "description": "First telegram bot with npm telegraf module",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "dev": "nodemon bot.js"
+  },
+  "keywords": [
+    "bot",
+    "telegraf",
+    "telegram"
+  ],
+  "author": "Javlon Nomozov",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
