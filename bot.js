@@ -19,6 +19,30 @@ bot.command(["start", "help"], (ctx) =>
   )
 );
 
+// @COMMMAND  /usd_uzs
+// @DESC      USD to UZS exchange
+bot.command(["usd_uzs"], (ctx) => {
+  const usdUzsUrl =
+    "https://v6.exchangerate-api.com/v6/a8f130afe395d732e4ce754d/pair/USD/UZS";
+  (async () => {
+    const response = await fetch(usdUzsUrl);
+    const usdUzd = (await response.json()).conversion_rate;
+    ctx.replyWithHTML(`1.00 Do'llar\n${usdUzd} So'm`);
+  })();
+});
+
+// @COMMMAND  /usd_uzs
+// @DESC      USD to UZS exchange
+bot.command(["eur_uzs"], (ctx) => {
+  const usdUzsUrl =
+    "https://v6.exchangerate-api.com/v6/a8f130afe395d732e4ce754d/pair/EUR/UZS";
+  (async () => {
+    const response = await fetch(usdUzsUrl);
+    const usdUzd = (await response.json()).conversion_rate;
+    ctx.replyWithHTML(`1.00 Yevro\n${usdUzd} So'm`);
+  })();
+});
+
 // Wikipedia bot
 bot.on(message("text"), async (ctx) => {
   const inputText = ctx.message.text;
