@@ -12,12 +12,12 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 // create a telegram bot app
 const bot = new Telegraf(BOT_TOKEN);
 
-// /start, /help commands' logic
-bot.command(["start", "help"], (ctx) =>
+const descFunc = (ctx) =>
   ctx.replyWithHTML(
-    "Hello! I am <b>Echo Telegram bot</b> powered by Javlon Nomozov with telegraf module."
-  )
-);
+    "Hello! I am <b>Currency Exchanger Telegram bot</b> powered by Javlon Nomozov with telegraf module.\ncommnds:\n/usd_uzs - dollar kursini bilish uchun\n/eur_uzs - Yevro kursini bilish uchun"
+  );
+// /start, /help commands' logic
+// bot.command(["start", "help"], descFunc);
 
 // @COMMMAND  /usd_uzs
 // @DESC      USD to UZS exchange
@@ -31,7 +31,7 @@ bot.command(["usd_uzs"], (ctx) => {
   })();
 });
 
-// @COMMMAND  /usd_uzs
+// @COMMMAND  /eur_uzs
 // @DESC      USD to UZS exchange
 bot.command(["eur_uzs"], (ctx) => {
   const usdUzsUrl =
@@ -43,40 +43,7 @@ bot.command(["eur_uzs"], (ctx) => {
   })();
 });
 
-// Wikipedia bot
-bot.on(message("text"), async (ctx) => {
-  const inputText = ctx.message.text;
-  try {
-    let page;
-    await (async () => {
-      try {
-        page = await wiki.page(inputText);
-        console.log({ page });
-      } catch (error) {
-        const searchResults = await wiki.search(inputText);
-        return ctx.reply(
-          "Qaysi maqolani olmoqchisiz:\n".concat(
-            searchResults.results.map((el) => el.title).join(",\n")
-          )
-        );
-      }
-    })();
-    if (page) {
-      console.log({ pdf: await page.pdf() });
-      let content = await page.content();
-      if (content.length > 4000) {
-        content = content.slice(0, 4000) + "...";
-      }
-      await ctx.reply(content);
-      // sending content as pdf file
-      await ctx.replyWithDocument(await page.pdf(), {
-        caption: "Pdf formatda to'liq holda ko'rishingiz mumkin",
-      });
-    }
-  } catch (error) {
-    console.log(error);
-    console.log("Bunday maqola mavjud emas");
-  }
-});
+// description part
+bot.on(message("text"), descFunc);
 
 bot.launch();
