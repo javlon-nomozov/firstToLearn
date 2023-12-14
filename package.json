@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "dotenv": "^16.3.1",
+    "google-auth-library": "^9.4.1",
     "telegraf": "^4.15.3",
+    "translation-google": "^0.2.1",
     "wikipedia": "^2.1.1"
   },
   "name": "firsttolearn",
